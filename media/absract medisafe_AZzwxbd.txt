@@ -1,0 +1,34 @@
+ The conventional system of patient-data management 
+has several issues. The system includes information being stored 
+as unstructured records presented as paper prescriptions, files and 
+other traditional forms of storage. All the important data 
+pertaining to the patient is stored by the centralized hospital 
+authorities or the concerned medical practitioners.
+Reproducibility of this data when it comes to second – opinions 
+or for the judgment of medical history, is a mammoth task. Even 
+if there is a disease which is common, the treatment will mostly 
+be not common for each individual as there should be considered 
+the fact that there is a certain level of uniqueness with each 
+patient. If a treatment strategy works on one patient, that does
+not mean it will work for all because there will be differences 
+between each patient. Thus, the entire medical record history 
+should be accessed so as to give the treatment which is best 
+suited for the particular individual. Commonly, when a patient 
+visits a new doctor, the doctor might recommend performing 
+tests that have been previously performed. This might be because 
+the proof of the previously conducted test cannot be produced as 
+the test results might have been lost. This project deals with how 
+Blockchain can be used to beat the odds faced by the 
+conventional centralized system that greatly lacks
+interoperability. With the help of Blockchain, the patient’s data 
+can be managed into a single record owned by the patient. The 
+patient’s details pertaining to all healthcare services he/she has 
+received will be managed into an easily accessible format for use 
+anytime and anywhere. The project also deals with other aspects 
+improving the interaction between the application and the 
+patient, such as, real-world token tracking for appointments, 
+appointment booking and so on. With the help of Blockchain, the
+current system can be completely disrupted and revolutionized, 
+allowing for better transparency and ownership of the sensitive
+data thereby promoting and transforming the healthcare 
+industries.	

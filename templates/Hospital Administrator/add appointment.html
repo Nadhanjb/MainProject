@@ -1,0 +1,184 @@
+
+{% extends 'Hospital Administrator/hindex1.html' %}
+{% block body %}
+
+<body>
+<form id="form1" name="form1" method="post" action="/add_app_action">
+  <table width="200" border="1" class="table table-striped">
+  <tr align="center">
+        <td colspan="12"><h3><b>ADD APPOINTMENT</b></h3>
+        </td>
+    </tr>
+     <tr>
+      <td><b>Department</b><label>
+      <td><label>
+        <select name="select" id="d" class="btn btn-light" style="width:210px;">
+        <option value="0">ALL</option>
+            {% for i in val %}
+            <option value="{{ i.id }}">{{ i.dept_name}}</option>
+            {% endfor %}
+        </select>
+      </label></td>
+    </tr>
+    <tr>
+        <td><b>Doctor Name</b><label>
+      <td><label>
+        <select name="select1" id="doc" class="btn btn-light" style="width:210px;">
+            {% for i in val1 %}
+            <option value="{{ i.id }}" {% if i.id == did %} selected {% endif %}>Dr.{{ i.name}}</option>
+            {% endfor %}
+        </select>
+      </label></td>
+    </tr>
+    <tr>
+      <td><b>Date</b>
+        <label></label></td>
+      <td><input type="date" name="textfield2" min="{{ data }}" onchange="setMinEndDate()" id="md" class="btn btn-light" style="width:210px;"  max="{{ td }}"/></td>
+    </tr>
+    <tr>
+      <td><b>Time</b>
+        <label></label></td>
+      <td><select  name="textfield22"  id="mt" class="btn btn-light" style="width:210px;"/></td>
+    </tr>
+    <tr>
+      <td colspan="2"><div align="center">
+          <input type="submit" name="Submit" value="BOOK" class="btn btn-secondary" style="width:100%"/></div></td>
+    </tr>
+  </table>
+
+
+
+
+</form>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script type="text/javascript">
+
+
+    $("#d").change(function(){
+    var catid;
+    catid = $(this).val();
+{#    alert(catid)#}
+
+$.ajax(
+    {
+        type:"GET",
+        url: "/seldoc",
+        data:{
+                 did: catid
+        },
+        success: function( data )
+        {
+
+            var op=""
+       for(var i=0;i<data.length;i++)
+       {
+           op+='<option value="'+data[i].id+'">'+data[i].name+'</option>';
+
+       }
+       $('select#doc').empty();
+       $('select#doc').append(op);
+
+        }
+     })
+});
+
+$("#pwd").keyup(function(){
+    var passwd;
+    passwd = $(this).val();
+
+$.ajax(
+    {
+        type:"GET",
+        url: "/pwdck",
+        data:{
+                 pswd: passwd,
+
+        },
+        success: function( data )
+        {
+       $( '#passwd' ).text(data);
+
+        }
+     })
+});
+
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+<script>
+function setMinEndDate() {
+    var mtt="{{ t }}";
+    alert(mtt)
+    var mind="{{ data }}";
+
+    var startDate = document.getElementById("md").value;
+    var did = document.getElementById("doc").value;
+{#    alert(startDate)#}
+    if(mind==startDate) {
+        document.getElementById("mt").setAttribute("min", mtt);
+    }
+    else
+    {
+        document.getElementById("mt").setAttribute("min", "00:00");
+    }
+
+    $.ajax(
+    {
+        type:"GET",
+        url: "/searchslot",
+        data:{
+                 date: startDate,doc:did,
+        },
+        success: function( data )
+        {
+{#            alert(data)#}
+        var tab;
+        tab='<option>Select</option>';
+        for (var i=0, l=data.length; i<l; i++)
+        {
+        tab=tab+'<option value="'+data[i].d+'">'+data[i].d+'</option>'
+        }
+
+$('#mt').empty();
+$('#mt').append(tab);
+        }
+     })
+
+
+
+
+}
+</script>
+
+<script>
+  // Set a minimum time value (e.g., 08:00)
+  var minTime = "{{ t }}";
+  var d = "{{ data }}";
+
+  // Get the time input field
+  var timeInput = document.getElementById("mt");
+var startDate = document.getElementById("md").value;
+
+  // Add an event listener to check the value when it changes
+  timeInput.addEventListener("input", function() {
+
+var startDate = document.getElementById("md").value;
+console.log(startDate)
+console.log(d)
+          if(startDate==d) {
+console.log("+++++++++++++++++++++++++++++")
+              // Compare the current value with the minimum time
+              if (timeInput.value < minTime) {
+                  // If the value is less than the minimum, set it to the minimum
+                  timeInput.value = minTime;
+              }
+          }
+
+  });
+
+</script>
+
+</body>
+{% endblock %}

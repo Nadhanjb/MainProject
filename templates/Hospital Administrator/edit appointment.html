@@ -1,0 +1,41 @@
+{% extends 'Hospital Administrator/hindex1.html' %}
+{% block body %}
+
+<body>
+<form id="form1" name="form1" method="post" action="/edit_app_action">
+  <table width="200" border="1" class="table table-striped">
+  <tr align="center">
+        <td colspan="12"><h3><b>EDIT APPOINTMENT</b></h3>
+        </td>
+    </tr>
+   <tr>
+       <td><b>Doctor Name</b><label>
+      <td><label>
+        <select name="select1" id="doc" class="btn btn-outline-dark" style="width:210px;">
+            {% for i in val1 %}
+            <option value="{{ i.id }}">Dr.{{ i.name}}</option>
+            {% endfor %}
+        </select>
+      </label></td>
+    </tr>
+    <tr>
+      <td><b>Date</b></td>
+      <td><label>
+        <input type="date" name="textfield" value="{{ dt }}" class="btn btn-outline-dark" style="width:210px;"/>
+      </label></td>
+    </tr>
+    <tr>
+      <td><b>Time</b></td>
+      <td><label>
+        <input type="text" name="textfield2" id="mt" value="{{ t }}" onchange="setMinEndDate()" id="md" class="btn btn-outline-dark" style="width:210px;"/>
+      </label></td>
+    </tr>
+    <tr>
+      <td colspan="2"><div align="center">
+          <input type="submit" name="Submit" value="Save" class="btn btn-secondary" style="width:100%" /></div></td>
+    </tr>
+  </table>
+</form>
+</body>
+{% endblock %}
+

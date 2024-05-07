@@ -1,0 +1,103 @@
+{% extends 'Hospital Administrator/hindex1.html' %}
+{% block body %}
+<style>
+#aab {
+  margin-top: 100px;
+}
+</style>
+<body>
+<div class="ex1" id="aab"  style="overflow:scroll; height:500px;">
+<form action="add_dr_action" method="post" enctype="multipart/form-data" name="form1" id="form1">
+
+  <table width="662" border="1" class="table table-striped">
+  <tr align="center">
+        <td colspan="5"><h3><b>ADD DOCTOR</b></h3>
+        </td>
+    </tr>
+    <tr>
+      <td width="144"><b>Name</b></td>
+      <td width="502"><label>
+        <input type="text" name="textfield" class="btn btn-outline-dark" style="width:210px;" required pattern="[A-Z a-z.]{3,25}" placeholder="Name"/>
+      </label></td>
+    </tr>
+    <tr>
+        <td><b>Gender</b></td>
+      <td><label>
+        <input name="radiobutton" type="radio" value="Male" />
+      Male
+      <input name="radiobutton" type="radio" value="Female" />
+      Female
+      <input name="radiobutton" type="radio" value="Others" />
+      Others
+      </label></td>
+    </tr>
+    <tr>
+        <td><b>DOB</b></td>
+      <td><input type="date" name="textfield10" class="btn btn-outline-dark"  required min="1970-01-01" max="1998-12-31" placeholder="Date of Birth"/></td>
+    </tr>
+    <tr>
+        <td><b>Place</b></td>
+      <td><input type="text" name="textfield2" class="btn btn-outline-dark" style="width:210px;" pattern="[A-Z a-z.]{3,25}" required placeholder="Place"/></td>
+    </tr>
+    <tr>
+        <td><b>Pin</b></td>
+      <td><input type="text" name="textfield22" class="btn btn-outline-dark" style="width:210px;" required pattern="[0-9]{6}" placeholder="Pin"/></td>
+    </tr>
+    <tr>
+        <td><b>Post</b></td>
+      <td><input type="text" name="textfield23" class="btn btn-outline-dark" style="width:210px;" pattern="[A-Z a-z.]{3,25}" required  placeholder="Post"/></td>
+    </tr>
+    <tr>
+        <td><b>Photo     </b> </td>
+      <td><label>
+        <input type="file" name="file" required accept="image/jpeg,image/png"  class="btn btn-outline-dark" style="width:210px;"/>
+      </label></td>
+    </tr>
+    <tr>
+        <td><b>Phone</b>
+        <label></label></td>
+      <td><input type="text" name="textfield3" required pattern="[6789][0-9]{9}" class="btn btn-outline-dark" style="width:210px;" placeholder="Phone"/></td>
+    </tr>
+    <tr>
+        <td><b>Email</b>
+        <label></label></td>
+      <td><input type="text" name="textfield4" class="btn btn-outline-dark" style="width:210px;" required pattern="[a-z_0-9]{2,30}[@][a-z]{2,10}[.][a-z.]{2,20}" title="Email only contain letters(a-z),numbers(0-9) and periods(.) are allowed" placeholder="Email"/></td>
+    </tr>
+    <tr>
+        <td><b>Department<label></label></b></td>
+      <td><label>
+        <select name="select" class="btn btn-outline-dark" style="width:210px;" >
+            {% for i in val1 %}
+            <option value="{{ i.id }}" >{{ i.dept_name }}</option>
+            {% endfor %}
+        </select>
+      </label></td>
+    </tr>
+    <tr>
+        <td><b>Qualification<label></label></b></td>
+      <td><input type="text" name="textfield5" class="btn btn-outline-dark" style="width:210px;" required pattern="[A-Z a-z.()]{3,100}" placeholder="Qualification"/></td>
+    </tr>
+    <tr>
+        <td><b>Experience<label></label></b></td>
+      <td><input type="text" name="textfield6" class="btn btn-outline-dark" style="width:210px;" required pattern="[A-Z a-z.0-9]{3,25}" placeholder="Experience"/></td>
+    </tr>
+    <tr>
+      <td><b>Specialization<label></label></b></td>
+      <td><input type="text" name="textfield7" class="btn btn-outline-dark" style="width:210px;" required pattern="[A-Z a-z.]{3,25}" placeholder="Specialization"/></td>
+    </tr>
+
+    <tr>
+      <td><b>Password<label></label></b></td>
+      <td><input type="text" name="textfield9" class="btn btn-outline-dark" placeholder="Password" style="width:210px;" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required/></td>
+    </tr>
+	 <tr>
+      <td colspan="2"><div align="center">
+          <input type="submit" name="Submit" value="Add" class="btn btn-secondary" style="width:100%"/></div></td>
+    </tr>
+  </table>
+
+  <label></label>
+</form>
+</div>
+</body>
+{% endblock %}

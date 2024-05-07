@@ -1,0 +1,60 @@
+{% extends 'Doctor/dindex1.html' %}
+{% block body %}
+<div id="" style="overflow:scroll; height:500px;">
+<form id="form1" name="form1" method="post" action="/view_prev_rec1">
+  <table width="200" border="1" class="table table-striped">
+  <tr align="center">
+        <td colspan="13"><h3><b>PREVIOUS HEALTH RECORDS</b></h3>
+        </td>
+    </tr>
+  <tr>
+        <td colspan="7"><b>Date</b>
+        <label>
+          <input type="date" name="textfield" value="{{ dt }}" class="btn btn-light"/>
+        </label>
+        <b>Testname</b>
+        <label>
+          <input type="text" name="textfield2" value="{{request.POST.textfield2}}" class="btn btn-light"/>
+        </label>
+            <b>Department</b>
+        <label>
+        <select name="select" class="btn btn-light" style="width:210px;">
+        <option value="">Select</option>
+            <option {% if d == "Psychiatry Department" %} selected {% endif %} >Psychiatry Department</option>
+            <option {% if d == "Cardiology Department" %} selected {% endif %}>Cardiology Department</option>
+            <option {% if d == "Oncology Department" %} selected {% endif %} >Oncology Department</option>
+        <option {% if d == "Neurology Department" %} selected {% endif %} >Neurology Department</option>
+        <option {% if d == "Radiology Department" %} selected {% endif %} >Radiology Department</option>
+        <option {% if d == "Pediatrics Department" %} selected {% endif %} >Pediatrics Department</option>
+        <option {% if d == "General Medicine" %} selected {% endif %} >General Medicine</option>
+{#            <option ></option>#}
+{#            <option >X-ray</option>#}
+{#            <option >MRI</option>#}
+{#            <option >CT scan</option>#}
+        </select>
+      </label>
+        <label>
+        <input type="submit" name="Submit" value="Search" class="btn btn-primary" style="width:210px;"/>
+      </label></td>
+    </tr>
+    <tr>
+      <td><b>Disease</b></td>
+{#      <td><b>Duration</b></td>#}
+      <td><b>Testname</b></td>
+        <td><b>Test result</b> </td>
+        <td><b>Result conclusion</b> </td>
+      <td><b>Details</b></td>
+      <td><b>Date</b></td>
+    </tr>{% for i in val %}
+    <tr>
+      <td>{{ i.record }}</td>
+{#      <td>{{ i.due }}</td>#}
+      <td>{{ i.tname }}</td>
+      <td><a href="{{ i.image }}" ><i class="bi bi-eye">  View</i></a> </td>
+      <td>{{ i.trc }}</td>
+      <td>{{ i.details }}</td>
+      <td>{{ i.date }}</td>
+    </tr>{% endfor %}
+  </table>
+</form>
+{% endblock %}

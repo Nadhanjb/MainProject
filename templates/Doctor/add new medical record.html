@@ -1,0 +1,67 @@
+{% extends 'Doctor/dindex1.html' %}
+{% block body %}
+
+<body>
+<form action="add_record_action" method="post" enctype="multipart/form-data" name="form1" id="form1">
+  <table width="200" border="1" class="table table-striped">
+      <tr align="center">
+        <td colspan="13"><h3><b>ADD HEALTH RECORD</b></h3>
+        </td>
+    </tr>
+    <tr>
+      <td><b>Disease</b></td>
+      <td><label>
+      <input type="text" name="textfield4" value="{{ request.session.dis }}" required pattern="[A-Z a-z.()]{5,100}" class="btn btn-light" style="width:210px;"/>
+      </label></td>
+    </tr>
+{#    <tr>#}
+{#      <td><b>Duration</b></td>#}
+{#      <td><label>#}
+{#      <input type="text" name="textfield3" value="{{ request.session.dur }}" class="btn btn-light" style="width:210px;" required pattern="[A-Z a-z.0-9]{3,25}"/>#}
+{#      </label></td>#}
+{#    </tr>#}
+    <tr>
+        <td><b>Test name </b></td>
+      <td><label>
+        <select name="select" class="btn btn-light" style="width:210px;" required>
+             <option value="">select</option>
+            <option >HIV Antibody Test (ELISA)</option>
+            <option >Blood test</option>
+            <option >Urin test</option>
+            <option >ECG</option>
+            <option >X-ray</option>
+            <option >MRI</option>
+            <option >CT scan</option>
+            <option >Spirometry</option>
+        </select>
+      </label></td>
+    </tr>
+    <tr>
+        <td><b>Test result</b></td>
+      <td><label>
+        <input type="file" name="file" class="btn btn-light" style="width:210px;" required accept=".png,.jpeg,.pdf"/>
+      </label></td>
+    </tr>
+    <tr>
+        <td><b>Result conclusion</b> </td>
+      <td><label>
+        <input type="text" name="textfield2" required pattern="[A-Z a-z.]{8,100}" class="btn btn-light" style="width:210px;" />
+      </label></td>
+    </tr>
+        <tr>
+      <td><b>Description</b> </td>
+      <td><label>
+        <input type="text" name="textfield"  class="btn btn-light" style="width:210px;"/>
+      </label></td>
+    </tr>
+    <tr>
+      <td colspan="2" align="center"><label>
+        <input type="submit" name="Submit" value="Add" class="btn btn-secondary"/>
+      </label>
+        <label>
+        <input type="submit" name="Submit" value="Finish" class="btn btn-primary"/>
+      </label></td>
+    </tr>
+  </table>
+</form>
+{% endblock %}

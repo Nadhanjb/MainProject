@@ -1,0 +1,83 @@
+{% extends 'Hospital Administrator/hindex1.html' %}
+{% block body %}
+    <head>
+
+    </head>
+<body>
+<div id="">
+<form id="form1" name="form1" method="post" action="/view_pat_search">
+
+  <div width="547" border="1" class="table table-striped">
+      <tr align="center">
+        <td colspan="3"><h3><b>BOOKING FOR DOCTORS </b></h3>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="1" align="center"><b>Health ID</b>
+        <label>
+        <td>  <input type="text" name="textfield" value="{{ name }}" class="btn btn-outline-dark" /></td>
+        <td> <input type="submit" name="Submit" onclick="toggleRow()" value="Search" class="btn btn-primary" style="width:210px;"/></td>
+      </label></td>
+    </tr></div>
+    </table>
+
+{% if ck == 0 %}
+{#      <tr>#}
+{#      <td width="14"><b>Name</b></td>#}
+{##}
+{#      <td width="372">{{ val.fname }} {{ val.lname }}</td>#}
+{#    </tr>#}
+{#       <tr>#}
+{#      <td width="14"><b>Gender</b></td>#}
+{##}
+{#      <td width="372">{{ val.gender }}</td>#}
+{#    </tr> <tr>#}
+{#      <td width="14"><b>DOB</b></td>#}
+{##}
+{#      <td width="372">{{ val.dob }}</td>#}
+{#    </tr>#}
+{#       <tr>#}
+{#      <td width="14"><b>Address</b></td>#}
+{##}
+{#      <td width="372">{{ val.place }}#}
+{#      <br> {{ val.pin }}<br> {{ val.post }}</td>#}
+{#    </tr>#}
+{#       <tr>#}
+{#      <td width="14"><b>Phone</b></td>#}
+{##}
+{#      <td width="372">{{ val.phone }}</td>#}
+{#    </tr>#}
+{#       <tr>#}
+{#      <td width="14"><b>Email</b></td>#}
+{##}
+{#      <td width="372">{{ val.email }}</td>#}
+{#    </tr>#}
+{#       <tr>#}
+{#      <td width="14"><b>Photo</b></td>#}
+{##}
+{#      <td width="372"><img src="{{ val.photo.url }}" height="100" width="100"</td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <td>&nbsp;</td>#}
+{#      <td><a href="/add_app/{{ val.id }}" >Book now</a></td>#}
+{#    </tr>#}
+
+    <div class="card" style="width: 25rem;">
+  <img src="{{ val.photo.url }}" class="card-img-top"height="150" width="15">
+  <div class="card-body">
+    <h5 class="card-title"><b>NAME   :</b>{{ val.fname }} {{ val.lname }}</h5>
+    <h5 class="card-title"><b>GENDER  :</b>{{ val.gender }}</h5>
+      <h5 class="card-title"><b>AGE :</b>{{ val.dob }}</h5>
+      <h5 class="card-title"><b>ADDRESS :</b>{{ val.place }}
+     <br> {{ val.pin }}<br> {{ val.post }}</h5>
+      <h5 class="card-title"><b>PHONE :</b>{{ val.phone }}</h5>
+      <h5 class="card-title"><b>EMAIL :</b>{{ val.email }}</h5>
+
+    <a href="/add_app/{{ val.id }}" class="btn btn-primary"style="width:100%">Book now</a>
+  </div>
+</div>
+    {% endif %}
+</form>
+</div>
+</body>
+{% endblock %}

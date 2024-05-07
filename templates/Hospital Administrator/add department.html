@@ -1,0 +1,35 @@
+{% extends 'Hospital Administrator/hindex1.html' %}
+{% block body %}
+
+<body>
+<form id="form1" name="form1" method="post" action="add_dept_action">
+
+  <table width="410" border="1" class="table table-striped">
+  <tr align="center">
+        <td colspan="12"><h3><b>ADD DEPARTMENT</b></h3>
+        </td>
+    </tr>
+    <tr>
+      <td width="400"><b>Department name</b>
+        <label></label></td>
+      <td width="400"><label>
+      <input type="text" name="textfield" required pattern="[A-Z a-z.]{8,40}" class="btn btn-outline-dark" style="width:210px;"/>
+      </label></td>
+    </tr>
+    <tr>
+      <td><b>Details </b>
+        <label></label></td>
+      <td><label>
+        <textarea name="textarea" required class="btn btn-outline-dark" style="width:600px;height: 200px;"></textarea>
+      </label></td>
+    </tr>
+    <tr>
+    <td colspan="2"><div align="center">
+        <input type="submit" name="Submit" value="Add" class="btn btn-secondary" style="width:100%"/></td>
+  </tr>
+    </tr>
+  </table>
+
+</form>
+</body>
+{% endblock %}

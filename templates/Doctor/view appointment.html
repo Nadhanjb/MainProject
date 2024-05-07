@@ -1,0 +1,68 @@
+{% extends 'Doctor/dindex1.html' %}
+{% block body %}
+
+ <style>
+    /* Custom CSS for Card Styling */
+    .card {
+      margin-bottom: 20px; /* Add margin at the bottom of each card */
+    }
+  </style>
+
+
+<body>
+<div id="" style="overflow:scroll; height:500px;">
+  <form id="form1" name="form1" method="post" action="/view_appointment_search">
+  <table width="426" border="1" class="table table-striped">
+      <tr align="center">
+        <td colspan="12"><h3><b>APPOINTMENTS</b></h3>
+        </td>
+    </tr>
+    <tr>
+      <td colspan="5"><b>Date</b>
+        <label>
+          <input type="date" name="textfield" value="{{ dt }}" class="btn btn-light"/>
+        </label>
+          <b>Month</b>
+          <select name="textfield2" class="btn btn-light"/>
+      <option></option>
+    <option value="1" {% if dm == "1" %} selected {% endif %}>January</option>
+    <option value="2" {% if dm == "2" %} selected {% endif %}>February</option>
+    <option value="3" {% if dm == "3" %} selected {% endif %}>March</option>
+    <option value="4" {% if dm == "4" %} selected {% endif %}>April</option>
+    <option value="5" {% if dm == "5" %} selected {% endif %}>May</option>
+    <option value="6" {% if dm == "6" %} selected {% endif %}>June</option>
+    <option value="7" {% if dm == "7" %} selected {% endif %}>July</option>
+    <option value="8" {% if dm == "8" %} selected {% endif %}>August</option>
+    <option value="9" {% if dm == "9" %} selected {% endif %}>September</option>
+    <option value="10" {% if dm == "10" %} selected {% endif %}>October</option>
+    <option value="11" {% if dm == "11" %} selected {% endif %}>November</option>
+    <option value="12" {% if dm == "12" %} selected {% endif %}>December</option>
+            </select>
+
+        <label>
+          <input type="submit" name="Submit" value="Search" class="btn btn-primary" style="width:210px;"/>
+        </label>
+      <td/>
+    </tr>
+  </table>
+</form>
+
+<div class="container">
+  <div class="row">
+    {% for i in val %}
+      <div class="col-sm-3">
+        <a href="check_system/{{ i.id }}">  </a>
+        <div class="card">
+          <img class="card-img-top" src="{{ i.PATIENT.photo.url }}" height="100" width="100">
+          <div class="card-body">
+            <p class="card-text">{{ i.PATIENT.fname }} {{ i.PATIENT.lname }}<br>{{ i.date }}<br>{{ i.time }}<br><a href="/view_pat_dr/{{ i.PATIENT.id }}/{{ i.id }}" class="btn btn-success"><i class="bi bi-eye">  View</i></a>
+            </p>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+</body>
+
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'Admin/aindex1.html' %}
+{% block body %}
+
+<body>
+<div id="" style="overflow:scroll; height:500px;">
+<form id="form1" name="form1" method="post" action="view_blockhosp_search#about">
+
+  <table width="200" border="1" class="table table-striped">
+  <tr align="center">
+        <td colspan="7"><h1><b>HOSPITALS</b></h1>
+        </td>
+    </tr>
+    <tr>
+      <td colspan="7">Hospital name
+        <label>
+        <input type="text" name="textfield" value="{{ name }}" class="btn btn-light" style="width:190px;"/>
+        </label>
+        <label>
+        <input type="submit" name="Submit" value="Search" class="btn btn-light" style="width:190px;"/>
+        </label></td>
+    </tr>
+    <tr>
+        <td><b>Sl no </b></td>
+        <td><b>Lisence no </b></td>
+      <td><b>Name</b></td>
+      <td><b>Address</b></td>
+      <td><b>Phone</b></td>
+        <td><b>Email</b></td>
+      <td>&nbsp;</td>
+    </tr>{% for i in val %}
+    <tr>
+      <td>{{ forloop.counter }}</td>
+      <td>{{ i.license_no }}</td>
+      <td>{{ i.hosp_name }}</td>
+      <td>{{ i.place }}<br>{{ i.pin }}<br>{{ i.post }}</td>
+      <td>{{ i.phone }}</td>
+      <td>{{ i.email }}</td>
+      <td>{% if i.LOGIN.type == 'hospital' %}
+          <p><a href="/block_hosp/{{ i.LOGIN.id }}#about" class="btn btn-danger">block</a></p>
+          {% else %}
+      <p><a href="/unblock_hosp/{{ i.LOGIN.id }}#about" class="btn btn-primary">unblock</a></p></td>
+    {% endif %}
+    </tr>{% endfor %}
+  </table>
+
+</form>
+</div>
+</body>
+{% endblock %}

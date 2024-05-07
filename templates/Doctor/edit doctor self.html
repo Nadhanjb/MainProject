@@ -1,0 +1,101 @@
+{% extends 'Doctor/dindex1.html' %}
+{% block body %}
+<style>
+#aab {
+  margin-top: 100px;
+}
+</style>
+<body>
+<div class="ex1" id="aab"  style="overflow:scroll; height:500px;">
+<form action="/edit_dr_action_self" method="post" enctype="multipart/form-data" name="form1" id="form1">
+
+  <table width="662" border="1" class="table table-striped">
+  <tr align="center">
+        <td colspan="5"><h3><b>PROFILE</b></h3>
+        </td>
+    </tr>
+    <tr>
+      <td width="144"><b>Name</b>
+        <label></label></td>
+      <td width="502"><label>
+        <input type="text" name="textfield"  value="{{ val1.name }}" class="btn btn-light" style="width:210px;" required pattern="[A-Z a-z.]{3,25}" placeholder="Name"/>
+      </label></td>
+    </tr>
+    <tr>
+      <td><b>Gender</b>
+        <label></label></td>
+      <td><label>
+        <input name="radiobutton" type="radio" value="Male" {% if val1.gender == 'Male' %}checked{% endif %}/>
+      Male
+      <input name="radiobutton" type="radio" value="Female" {% if val1.gender == 'Female' %}checked{% endif %}/>
+      Female
+      <input name="radiobutton" type="radio" value="Others" {% if val1.gender == 'Others' %}checked{% endif %}/>
+      Others
+      </label></td>
+    </tr>
+    <tr>
+      <td><b>DOB</b></td>
+      <td><input type="date" name="textfield10" value="{{ dt }}" class="btn btn-light" style="width:210px;" required min="1970-01-01" max="1998-12-31" placeholder="Date of Birth"/></td>
+    </tr>
+    <tr>
+      <td><b>Place</b></td>
+      <td><input type="text" name="textfield2" value="{{ val1.place }}" class="btn btn-light" style="width:210px;" pattern="[A-Z a-z.]{3,25}" required placeholder="Place"/></td>
+    </tr>
+    <tr>
+      <td><b>Pin</b></td>
+      <td><input type="text" name="textfield22" value="{{ val1.pin }}" class="btn btn-light" style="width:210px;" required pattern="[0-9]{6}" placeholder="Pin"/></td>
+    </tr>
+    <tr>
+      <td><b>Post</b></td>
+      <td><input type="text" name="textfield23" value="{{ val1.post }}" class="btn btn-light" style="width:210px;" pattern="[A-Z a-z.]{3,25}" required  placeholder="Post"/></td>
+    </tr>
+    <tr>
+      <td><b>Photo</b>      </td>
+      <td><label><img src="{{ val1.photo.url }}" width="100" height="100">
+        <input type="file" name="file" class="btn btn-light" style="width:210px;" accept="image/jpeg,image/png"/>
+      </label></td>
+    </tr>
+    <tr>
+      <td><b>Phone</b>
+        <label></label></td>
+      <td><input type="text" name="textfield3" value="{{ val1.phone }}" required pattern="[6789][0-9]{9}" class="btn btn-light" style="width:210px;" placeholder="Phone"/></td>
+    </tr>
+    <tr>
+      <td><b>Email</b>
+        <label></label></td>
+      <td><input type="text" name="textfield4" value="{{ val1.email }}"  class="btn btn-light" style="width:210px;" required pattern="[a-z_0-9]{2,30}[@][a-z]{2,10}[.][a-z.]{2,20}" title="Email only contain letters(a-z),numbers(0-9) and periods(.) are allowed" placeholder="Email"/></td>
+    </tr>
+    <tr>
+      <td><b>Department</b><label></label></td>
+      <td><label>
+        <select name="select" class="btn btn-light" style="width:210px;">
+            {% for i in val2 %}
+            <option {% if val1.DEPARTMENT.id == i.id %} selected {% endif %} value="{{ i.id }}">{{ i.dept_name }}</option>
+            {% endfor %}
+        </select>
+      </label></td>
+    </tr>
+    <tr>
+      <td><b>Qualification</b><label></label></td>
+      <td><input type="text" name="textfield5" value="{{ val1.qualification }}" class="btn btn-light" style="width:210px;" required pattern="[A-Z a-z.]{3,100}" placeholder="Qualification"/></td>
+    </tr>
+    <tr>
+      <td><b>Experience</b><label></label></td>
+      <td><input type="text" name="textfield6" value="{{ val1.experience }}" class="btn btn-light" style="width:210px;" required pattern="[A-Z a-z.0-9]{3,25}" placeholder="Experience"/></td>
+    </tr>
+    <tr>
+      <td><b>Specialization</b><label></label></td>
+      <td><input type="text" name="textfield7" value="{{ val1.specialization }}" class="btn btn-light" style="width:210px;" required pattern="[A-Z a-z.]{3,25}" placeholder="Specialization"/></td>
+    </tr>
+
+	 <tr>
+      <td colspan="2"><div align="center">
+        <input type="submit" name="Submit" value="Save" class="btn btn-secondary" style="width:100%" /></td>
+    </tr>
+  </table>
+
+  <label></label>
+</form>
+</div>
+</body>
+{% endblock %}

@@ -1,0 +1,91 @@
+{% extends 'Hospital Administrator/hindex1.html' %}
+{% block body %}
+<style>
+#aab {
+  margin-top: 100px;
+}
+</style>
+<body>
+<form action="/update_profile_action" method="post" enctype="multipart/form-data" name="form1" id="form1">
+<div class="ex1" id="aab"  style="overflow:scroll; height:500px;">
+  <table width="662" border="1" class="table table-striped">
+  <tr align="center">
+        <td colspan="5"><h3><b>PROFILE</b></h3>
+        </td>
+    </tr>
+    <tr>
+        <td width="144"><b>Hospital Name</b>
+        <label></label></td>
+      <td width="502"><label>
+        <input type="text" name="Name" class="btn btn-light" style="width:210px;" required pattern="[A-Z a-z.]{3,25}" placeholder="Name" value="{{ val.hosp_name }}"/>
+      </label></td>
+    </tr>
+     <tr>
+        <td width="144"><b>District</b>
+        <label></label></td>
+      <td width="502"><label>
+<select name="select1" id="doc" class="btn btn-light" style="width:210px;">
+
+            <option >{{ val.district}}</option>
+            <option >Thiruvanthapuram</option>
+            <option >Kollam</option>
+            <option >Pathanamthitta</option>
+            <option >Alappuzha</option>
+            <option >Kottayam</option>
+            <option >Idukki</option>
+            <option >Eranakulam</option>
+            <option >Thrissur</option>
+            <option >Palakkad</option>
+            <option >Malappuram</option>
+            <option >Kozhikkod</option>
+            <option >Wayanad</option>
+            <option >Kannur</option>
+            <option >Kasargod</option>
+        </select>      </label></td>
+    </tr>
+    <tr>
+      <td><b>Place</b></td>
+      <td><input type="text" name="Place" class="btn btn-light" style="width:210px;" pattern="[A-Z a-z.]{3,25}" required placeholder="Place" value="{{ val.place }}"/></td>
+    </tr>
+    <tr>
+      <td><b>Pin</b></td>
+      <td><input type="text" name="Pin" class="btn btn-light" style="width:210px;" required pattern="[0-9]{6}" placeholder="Pin" value="{{ val.pin }}"/></td>
+    </tr>
+    <tr>
+      <td><b>Post</b></td>
+      <td><input type="text" name="Post" class="btn btn-light" style="width:210px;" pattern="[A-Z a-z.]{3,25}" required  placeholder="Post" value="{{ val.post }}"/></td>
+    </tr>
+    <tr>
+        <td><b>Lisence number</b></td>
+      <td><input type="text" name="ln" class="btn btn-light" style="width:210px;" required pattern="[A-Z0-9]{10}"  placeholder="Lisence no" value="{{ val.license_no }}"/></td>
+    </tr>
+
+    <tr>
+      <td><b>Proof</b></td>
+      <td><label>
+        <input type="file" name="file"  accept=".png,.jpeg,.pdf"  class="btn btn-light" style="width:210px;" />
+{#          <img src="{{ val.proof.url }}" width="100dp" height="100dp" />#}
+          <a href="{{ val.proof.url }}" download>Download</a>
+      </label></td>
+    </tr>
+    <tr>
+      <td><b>Phone</b>
+        <label></label></td>
+      <td><input type="text" name="Phone no" required pattern="[6789][0-9]{9}" class="btn btn-light" style="width:210px;" placeholder="Phone" value="{{ val.phone }}"/></td>
+    </tr>
+    <tr>
+      <td><b>Email</b>
+        <label></label></td>
+      <td><input type="text" name="Email" class="btn btn-light" style="width:210px;" required pattern="[a-z_0-9]{2,30}[@][a-z]{2,10}[.][a-z.]{2,20}" title="Email only contain letters(a-z),numbers(0-9) and periods(.) are allowed" placeholder="Email" value="{{ val.email }}"/></td>
+    </tr>
+	 <tr>
+      <td colspan="2" >
+          <div align="center">
+              <input type="submit" name="Submit" value="Save" class="btn btn-secondary" style="width:100%" /></div></td>
+    </tr>
+  </table>
+</div>
+  <label></label>
+</form>
+</body>
+{% endblock %}

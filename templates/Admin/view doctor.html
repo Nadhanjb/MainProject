@@ -1,0 +1,85 @@
+{% extends 'Admin/aindex1.html' %}
+{% block body %}
+
+<body>
+<div id="" style="overflow:scroll; height:500px;">
+<form id="form1" name="form1" method="post" action="/view_dr_search#about">
+
+  <table width="510" border="1" class="table table-striped">
+   <tr align="center">
+        <td colspan="13"><h3><b>DOCTORS</b></h3>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="12">
+        <label>
+            <b> District</b>
+        <label>
+        <select name="select1" class="btn btn-outline-dark" style="width:210px;">
+               <option value="0">ALL</option>
+                 <option{% if d == "Thiruvanthapuram" %} selected {% endif %}>Thiruvanthapuram</option>
+           <option {% if d == "Kollam" %} selected {% endif %}>Kollam</option>
+            <option {% if d == "Pathanamthitta" %} selected {% endif %}>Pathanamthitta</option>
+            <option {% if d == "Alappuzha" %} selected {% endif %}>Alappuzha</option>
+            <option {% if d == "Kottayam" %} selected {% endif %}>Kottayam</option>
+            <option {% if d == "Idukki" %} selected {% endif %}>Idukki</option>
+            <option {% if d == "Eranakulam" %} selected {% endif %}>Eranakulam</option>
+            <option {% if d == "Thrissur" %} selected {% endif %}>Thrissur</option>
+            <option {% if d == "Palakkad" %} selected {% endif %}>Palakkad</option>
+            <option {% if d == "Malappuram" %} selected {% endif %}>Malappuram</option>
+            <option {% if d == "Kozhikkod" %} selected {% endif %}>Kozhikkod</option>
+            <option {% if d == "Wayanad" %} selected {% endif %}>Wayanad</option>
+            <option {% if d == "Kannur" %} selected {% endif %}>Kannur</option>
+            <option {% if d == "Kasargod" %} selected {% endif %}>Kasargod</option>
+
+
+        </select>
+            <b>Hospital Name</b>
+        <label>
+        <select name="select" class="btn btn-outline-dark">
+        <option value="0">ALL</option>
+            {% for j in val1 %}
+            <option value="{{ j.id }}" {% if j.id  ==  hid %} selected {% endif %}>{{ j.hosp_name }}</option>
+            {% endfor %}
+        </select>
+        </label>
+        <input type="submit" name="Submit" value="Search" class="btn btn-primary" />
+        </label></td>
+    </tr>
+    <tr>
+        <td><b>Sl.no</b></td>
+      <td width="12"><b>Name</b></td>
+      <td width="12"><b>Gender</b></td>
+      <td width="12"><b>Address</b></td>
+      <td width="12"><b>Age</b></td>
+      <td width="12"><b>Mail</b></td>
+      <td width="12"><b>Phone</b></td>
+      <td width="12"><b>District</b></td>
+      <td width="12"><b>Hospital</b></td>
+        <td width="12"><b>Department</b></td>
+      <td width="12"><b>Qualification</b></td>
+      <td width="12"><b>Specialization</b></td>
+      <td width="248"><b>Experience</b></td>
+    </tr>{% for i in val %}
+	  <tr><td>{{ forloop.counter }}</td>
+
+      <td align="center"><img src="{{ i.photo.url }}" height="100" width="100"><br><b>Dr.{{ i.name }}</b></td>
+      <td>{{ i.gender }}</td>
+      <td>{{ i.place }}
+      <br> {{ i.pin }}<br> {{ i.post }}</td>
+      <td>{{ i.dob }}</td>
+      <td>{{ i.email }}</td>
+      <td>{{ i.phone }}</td>
+      <td>{{ i.DEPARTMENT.HOSPITAL.district }}</td>
+      <td>{{ i.DEPARTMENT.HOSPITAL.hosp_name }}</td>
+      <td>{{ i.DEPARTMENT.dept_name }}</td>
+      <td>{{ i.qualification }}</td>
+      <td>{{ i.specialization }}</td>
+      <td>{{ i.experience }}</td>
+    </tr>{% endfor %}
+  </table>
+
+</form>
+</div>
+</body>
+{% endblock %}

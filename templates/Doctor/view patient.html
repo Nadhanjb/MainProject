@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Patient Information</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<style>
+  /* Custom CSS for Card Styling */
+  .card {
+    margin: 50px auto;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+    max-width: 400px; /* Adjusted max-width */
+  }
+  .card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  .card-header {
+    background-color: #007bff;
+    color: white;
+    border-radius: 10px 10px 0 0;
+    font-size: 18px; /* Adjusted font size */
+    padding: 15px;
+  }
+  .card-body {
+    padding: 30px;
+  }
+  .btn-container {
+    text-align: center;
+    margin-top: 20px;
+  }
+  .btn {
+    border-radius: 20px;
+    margin: 5px;
+    width: 150px; /* Adjusted button width */
+    font-size: 14px; /* Adjusted font size */
+  }
+  .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+  }
+  .btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+  }
+  .btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+  }
+  .btn-success:hover {
+    background-color: #218838;
+    border-color: #218838;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="card">
+    <div class="card-header">
+      <h5 class="mb-0 text-center">Patient Information</h5>
+    </div>
+    <div class="card-body">
+      <form id="form1" name="form1" method="post" action="">
+        <table width="100%" border="0" class="table table-striped">
+          <tr>
+            <td colspan="3" class="text-center">
+              <img src="{{ val.photo.url }}" height="100" width="100" alt="User Photo">
+            </td>
+          </tr>
+          <tr>
+            <td width="50%" align="right"><b>Name :</b></td>
+            <td width="50%">{{ val.fname }} {{ val.lname }}</td>
+          </tr>
+          <tr>
+            <td align="right"><b>Gender :</b></td>
+            <td>{{ val.gender }}</td>
+          </tr>
+          <tr>
+            <td align="right"><b>Age :</b></td>
+            <td>{{ val.dob }}</td>
+          </tr>
+          <tr>
+            <td align="right"><b>Address :</b></td>
+            <td>{{ val.place }}<br> {{ val.pin }}<br> {{ val.post }}</td>
+          </tr>
+          <tr>
+            <td align="right"><b>Phone :</b></td>
+            <td>{{ val.phone }}</td>
+          </tr>
+          <tr>
+            <td align="right"><b>Email :</b></td>
+            <td>{{ val.email }}</td>
+          </tr>
+          {% if date == curdate %}
+          <tr>
+            <td colspan="3" class="btn-container">
+              <a href="/view_prev_rec/{{ val.id }}" class="btn btn-primary">View Records</a>
+              <a href="/add_record" class="btn btn-success">Add Record</a>
+            </td>
+          </tr>
+          {% else %}
+          <tr><td></td></tr>
+          {% endif %}
+        </table>
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+</html>
+

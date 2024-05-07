@@ -1,0 +1,77 @@
+{% extends 'Hospital Administrator/hindex1.html' %}
+{% block body %}
+<style>
+#aab {
+  margin-top: 100px;
+}
+</style>
+<body>
+
+    <form id="form1" name="form1" method="post" action="/search_mng_dep#about">
+
+<br/>
+<br/>
+<br/>
+  <table width="200" border="1" class="table table-striped">
+  <tr align="center">
+        <td colspan="12"><h3><b>DEPARTMENTS</b></h3>
+        </td>
+    </tr>
+    <tr>
+      <td colspan="3"><b>Department</b>
+
+             <label>
+        <input type="text" name="textfield" value="{{ name }}" class="btn btn-outline-dark" style="width:210px;"/>
+        </label>
+        <input type="submit" name="Submit" value="Search" class="btn btn-primary" style="width:210px;"/>
+          <label> <a href="add_dept" class="btn btn-success"><i style="font-size:24px" class="fa">&#xf067;</i></a></label>
+      </td>
+    </tr>
+    <tr>
+      <td ><b>Sl.no</b></td>
+      <td ><b>Department</b></td>
+      <td colspan="3"><b>Details</b></td>
+      <td colspan="2"></td>
+    </tr>{% for i in my_objects %}
+    <tr>
+      <td>{{ forloop.counter }}</td>
+      <td>{{ i.dept_name }}</td>
+      <td>{{ i.details }}</td>
+ <td colspan="2"><p><a href="edit_dept/{{ i.id }}#about" class="btn btn-secondary"><i style="font-size:24px" class="fa">&#xf044;</i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <a href="dlt_depart/{{ i.id }}#about" class="btn btn-danger" onclick=" return confirm('Are you sure want to delete?')"><i style="font-size:24px" class="fa">&#xf014;</i></a></p></td>
+    </tr>{% endfor %}
+    <tr>
+      <td colspan="11">
+
+          <div class="pagination">
+    <span class="step-links">
+        {% if my_objects.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ my_objects.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ my_objects.number }} of {{ my_objects.paginator.num_pages }}.
+        </span>
+
+        {% if my_objects.has_next %}
+            <a href="?page={{ my_objects.next_page_number }}">next</a>
+            <a href="?page={{ my_objects.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
+
+      </td>
+  </tr>
+
+  </table>
+
+</form>
+
+</div>
+
+</body>
+{% endblock %}
+
+

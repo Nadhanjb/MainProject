@@ -1,0 +1,70 @@
+{% extends 'Hospital Administrator/hindex1.html' %}
+{% block body %}
+<style>
+#aab {
+  margin-top: 100px;
+}
+</style>
+<body>
+<div id="" style="overflow:scroll; height:500px;">
+<form id="form1" name="form1" method="post" action="/mng_dr_search">
+
+  <table width="766" border="1" class="table table-striped">
+  <tr align="center">
+        <td colspan="12"><h3><b>DOCTORS</b></h3>
+        </td>
+    </tr>
+    <tr>
+      <td colspan="12"><b> Department name</b>
+        <label>
+        <select name="select" class="btn btn-outline-dark" style="width:210px;">
+            <option></option>
+            {% for i in val1  %}
+            <option value="{{ i.id }}" {% if i.id == dep %} selected {% endif %}>{{ i.dept_name }}</option>
+            {% endfor  %}
+        </select>
+        </label>
+        <label>
+        <input type="submit" name="Submit" value="Search" class="btn btn-primary" style="width:210px;"/>
+        </label>
+       <label>
+      <a href="/add_dr#about" class="btn btn-success"style="width:100%"><i style="font-size:24px" class="fa">&#xf067;</i></a>
+       </label>
+      </td>
+    </tr>
+    <tr>
+
+      <td width="10"><b>Name</b></td>
+      <td width="10"><b>Address</b></td>
+      <td width="10"><b>Gender</b></td>
+      <td width="10"><b>Age</b></td>
+      <td width="10"><b>Phone</b></td>
+      <td width="10"><b>Email</b></td>
+      <td width="10"><b>Experience</b></td>
+      <td width="10"><b>Qualification</b></td>
+      <td width="10"><b>Specialization</b></td>
+      <td width="10"><b>Department</b></td>
+      <td width="302">&nbsp;</td>
+    </tr>{% for i in val %}
+    <tr>
+      <td align="center"><img src="{{ i.photo.url }}" height="100" width="100"><br><b>Dr.{{ i.name }}</b></td>
+      <td>{{ i.place }}
+      <br> {{ i.pin }}<br> {{ i.post }}</td>
+      <td>{{ i.gender }}</td>
+      <td>{{ i.dob }}</td>
+      <td>{{ i.phone }}</td>
+      <td>{{ i.email }}</td>
+      <td>{{ i.experience }}</td>
+      <td>{{ i.qualification }}</td>
+      <td>{{ i.specialization }}</td>
+      <td>{{ i.DEPARTMENT.dept_name }}</td>
+      <td><p><a href="/edit_dr/{{ i.id }}#about" class="btn btn-secondary"><i style="font-size:24px" class="fa">&#xf044;</i></a><br> &nbsp; &nbsp;
+      <a href="/dlt_dr/{{ i.id }}#about" class="btn btn-danger" onclick=" return confirm('Are you sure want to delete?')"><i style="font-size:24px;padding-right: 10px" class="fa">&#xf014;</i></a><br><br>
+      {% if i.LOGIN.type == "doctor" %}<a href="/breakdoc/{{ i.LOGIN.id }}#about" class="btn btn-success">Break</a><br>{% elif i.LOGIN.type == "break" %}
+      <a href="/joindoc/{{ i.LOGIN.id }}#about" class="btn btn-primary">Join</a>{% else %} {% endif %}</p></td>
+    </tr>{% endfor %}
+  </table>
+
+</form>
+</body>
+{% endblock %}

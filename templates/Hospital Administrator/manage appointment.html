@@ -1,0 +1,53 @@
+{% extends 'Hospital Administrator/hindex1.html' %}
+{% block body %}
+
+<body>
+<div id="" style="overflow:scroll; height:500px;">
+<form id="form1" name="form1" method="post" action="/mng_app_search">
+  <table width="200" border="1" class="table table-striped">
+  <tr align="center">
+        <td colspan="12"><h3><b>APPOINTMENTS</b></h3>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="6"><b>Date</b>
+        <label>
+          <input type="date" name="textfield" value="{{ dt }}" class="btn btn-light"/>
+        </label>
+            <b>Doctor name </b>
+        <label>
+        <select name="select" class="btn btn-light" style="width:210px;">
+        <option value="0">ALL</option>
+            {% for i in val1 %}
+            <option value="{{ i.id }}" {% if i.id == did %} selected {% endif %}>Dr.{{ i.name }}</option>
+            {% endfor %}
+        </select>
+      </label>
+        <label>
+        <input type="submit" name="Submit" value="Search" class="btn btn-primary" style="width:210px;"/>
+      </label></td>
+    </tr>
+    <tr>
+        <td><b>Sl.no</b></td>
+        <td><b>Patient Name</b> </td>
+      <td><b>Docor name</b></td>
+      <td><b>Time</b></td>
+        <td><b>Date</b></td>
+      <td>&nbsp;</td>
+    </tr>{% for i in val %}
+    <tr>
+      <td>{{ forloop.counter }}</td>
+      <td>{{ i.PATIENT.fname }} {{ i.PATIENT.lname }}</td>
+      <td>Dr.{{ i.DOCTOR.name }}</td>
+      <td>{{ i.time }}</td>
+      <td>{{ i.date }}</td>
+       <td><p><a href="/edit_app/{{ i.id }}#about" class="btn btn-secondary"><i style="font-size:24px" class="fa">&#xf044;</i></a>
+      <a href="dlt_app/{{ i.id }}#about" class="btn btn-danger" onclick=" return confirm('Are you sure want to delete?')"><i style="font-size:24px" class="fa">&#xf014;</i></a></p></td>
+    </tr>{% endfor %}
+  </table>
+</form>
+</div>
+</body>
+{% endblock %}
+
+

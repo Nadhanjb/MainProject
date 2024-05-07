@@ -1,0 +1,104 @@
+{% extends 'Admin/aindex1.html' %}
+{% block body %}
+
+<body>
+<form id="form1" name="form1" method="post" action="/hosp_verification_search">
+
+  <table width="510" border="1" class="table table-striped">
+  <tr align="center">
+        <td colspan="12"><h3><b>HOSPITALS</b></h3>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="8">
+            <b>District</b>
+        <label>
+        <select name="select1" class="btn btn-outline-dark" style="width:210px;">
+<option>ALL</option>
+                 <option{% if d == "Thiruvanthapuram" %} selected {% endif %}>Thiruvanthapuram</option>
+            <option {% if d == "Kollam" %} selected {% endif %}>Kollam</option>
+            <option {% if d == "Pathanamthitta" %} selected {% endif %}>Pathanamthitta</option>
+            <option {% if d == "Alappuzha" %} selected {% endif %}>Alappuzha</option>
+            <option {% if d == "Kottayam" %} selected {% endif %}>Kottayam</option>
+            <option {% if d == "Idukki" %} selected {% endif %}>Idukki</option>
+            <option {% if d == "Eranakulam" %} selected {% endif %}>Eranakulam</option>
+            <option {% if d == "Thrissur" %} selected {% endif %}>Thrissur</option>
+            <option {% if d == "Palakkad" %} selected {% endif %}>Palakkad</option>
+            <option {% if d == "Malappuram" %} selected {% endif %}>Malappuram</option>
+            <option {% if d == "Kozhikkod" %} selected {% endif %}>Kozhikkod</option>
+            <option {% if d == "Wayanad" %} selected {% endif %}>Wayanad</option>
+            <option {% if d == "Kannur" %} selected {% endif %}>Kannur</option>
+            <option {% if d == "Kasargod" %} selected {% endif %}>Kasargod</option>
+
+        </select><b>  Hospital name</b>
+        <label>
+            <input type="text" name="textfield" value="{{ name }}" class="btn btn-outline-dark" /></label>
+
+        <input type="submit" name="Submit" value="Search" class="btn btn-primary"/>
+      </label></td>
+    </tr>
+    <tr>
+        <td><b>Hospital name </b></td>
+        <td><b>District </b></td>
+        <td><b>License no</b> </td>
+        <td><b>Proof</b> </td>
+        <td><b>Address</b></td>
+        <td><b>Phone</b></td>
+        <td><b>Email</b></td>
+      <td width="244">&nbsp;</td>
+    </tr>{% for i in my_objects %}
+    <tr>
+      <td>{{ i.hosp_name }}</td>
+      <td>{{ i.district }}</td>
+      <td>{{ i.license_no }}</td>
+        <td><a href="{{ i.proof.url }}" target="_blank">{{ i.proof }}</a></td>
+
+      <td>{{ i.place }}<br>{{ i.pin }}<br>{{ i.post }}</td>
+      <td>{{ i.phone }}</td>
+      <td>{{ i.email }}</td>
+      <td>
+          {% if i.LOGIN.type == 'pending' %}
+          <p><a href="accpt_hosp/{{ i.LOGIN.id }}#about" class="btn btn-success">Verify</a></p>
+      <p><a href="reject_hosp/{{ i.LOGIN.id }}#abou" class="btn btn-danger">Reject</a></p>
+      {% elif  i.LOGIN.type == 'hospital' %}
+              <p><a href="/block_hosp/{{ i.LOGIN.id }}#about" class="btn btn-danger">block</a></p>
+          {% elif  i.LOGIN.type == 'block' %}
+      <p><a href="/unblock_hosp/{{ i.LOGIN.id }}#about" class="btn btn-primary">unblock</a></p></td>
+      {% else %}
+             <i class="text-danger">Rejected</i>
+          {% endif %}
+      </td>
+    </tr>{% endfor %}
+
+  <tr>
+      <td colspan="11">
+
+          <div class="pagination">
+    <span class="step-links">
+        {% if my_objects.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ my_objects.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ my_objects.number }} of {{ my_objects.paginator.num_pages }}.
+        </span>
+
+        {% if my_objects.has_next %}
+            <a href="?page={{ my_objects.next_page_number }}">next</a>
+            <a href="?page={{ my_objects.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
+
+      </td>
+  </tr>
+
+  </table>
+
+</form>
+</div>
+</body>
+{% endblock %}
+
